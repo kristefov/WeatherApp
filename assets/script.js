@@ -53,7 +53,7 @@ function getApi(cityName) {
 
 function getForecast(cityName) {
   let requestForecast =
-    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
     cityName +
     "&appid=" +
     keyWeather;
