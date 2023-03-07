@@ -17,7 +17,8 @@ function getApi(cityName) {
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
     "&appid=" +
-    keyWeather;
+    keyWeather +
+    "&units=metric";
   fetch(requestWeather)
     .then(function (response) {
       return response.json();
@@ -30,7 +31,7 @@ function getApi(cityName) {
       );
       cityN.textContent = data.name;
       date.textContent = "Date: " + timeUTC.toLocaleDateString();
-      temp.textContent = "Temperature: " + data.main.temp + " °F";
+      temp.textContent = "Temperature: " + data.main.temp + " °C";
       wind.textContent = "Wind: " + data.wind.speed + " Mph";
       humidity.textContent = "Humidity: " + data.main.humidity + " %";
       searchHistory.unshift(data.name);
@@ -56,7 +57,8 @@ function getForecast(cityName) {
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     cityName +
     "&appid=" +
-    keyWeather;
+    keyWeather +
+    "&units=metric";
   fetch(requestForecast)
     .then(function (response) {
       console.log(response);
@@ -80,7 +82,7 @@ function getForecast(cityName) {
             "@2x.png"
         );
         let weather5 = document.createElement("p");
-        weather5.textContent = "Temp: " + data.list[i].main.temp + " °F";
+        weather5.textContent = "Temp: " + data.list[i].main.temp + " °C";
         let wind5 = document.createElement("p");
         wind5.textContent = "Wind: " + data.list[i].wind.speed + " Mph";
         let humidity5 = document.createElement("p");
