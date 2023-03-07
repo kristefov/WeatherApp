@@ -28,17 +28,19 @@ function getApi(cityName) {
         "src",
         "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png"
       );
-      cityN.textContent = "City: " + data.name;
+      cityN.textContent = data.name;
       date.textContent = "Date: " + timeUTC.toLocaleDateString();
       temp.textContent = "Temperature: " + data.main.temp + " °F";
       wind.textContent = "Wind: " + data.wind.speed + " Mph";
       humidity.textContent = "Humidity: " + data.main.humidity + " %";
       searchHistory.unshift(data.name);
-      searchHistory.splice(5);
+      searchHistory.splice(4);
       displaySearch();
       localStorage.setItem("history", JSON.stringify(searchHistory));
       currentCity.className =
-        "bg-success text-dark border border-danger bg-opacity-25";
+        "bg-success m-1 p-4 rounded-4 text-dark bg-opacity-25";
+      cityN.className =
+        "rounded-4 m-2 p-2 text-shadow text-center shadow text-white bg-success";
     });
 
   currentCity.append(cityN);
@@ -63,11 +65,11 @@ function getForecast(cityName) {
     .then(function (data) {
       console.log(data);
       forecast.innerHTML = "";
-      for (let i = 2; i < data.list.length; i += 8) {
+      for (let i = 6; i < data.list.length; i += 8) {
         let dayTimeUTC = new Date(data.list[i].dt * 1000);
         let date5div = document.createElement("div");
         date5div.className =
-          "forecast5  bg-success m-1 text-dark text-center p-3 bg-opacity-25";
+          "forecast5  bg-success m-1 text-dark rounded-4 text-center p-3 bg-opacity-25";
         let date5 = document.createElement("p");
         date5.textContent = dayTimeUTC.toLocaleDateString();
         let image5 = document.createElement("img");
@@ -101,7 +103,7 @@ let displaySearch = function () {
     let cityList = document.createElement("li");
     cityList.textContent = searchHistory[i];
     cityList.className =
-      "list-group-item m-2 bg-success text-dark text-center bg-opacity-25";
+      "list-group-item m-2 bg-success rounded-4 text-dark text-center bg-opacity-25";
     cityList.addEventListener("click", function () {
       getApi(searchHistory[i]);
       getForecast(searchHistory[i]);

@@ -11,58 +11,74 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+      rel="stylesheet"
+    />
     <title>Weather Dashboard</title>
   </head>
-  <body>
+  <body class="bg-light">
     <header
-      class="container-fluid rounded-4 m-2 p-2 border-danger text-center text-white bg-success"
+      class="rounded-4 m-3 p-2 shadow text-shadow text-center text-white bg-success"
     >
       <h1>Weather Dashboard</h1>
     </header>
 
-    <div class="container-fluid bg-light">
+    <div class="container bg-light">
       <div class="row">
         <aside class="col-lg-4 rounded-4 bg-light">
-          <h5 class="bg-success text-dark rounded-4 bg-opacity-75 text-center">
+          <h5
+            class="bg-success text-shadow shadow text-white rounded-4 m-2 text-center"
+          >
             City Name
           </h5>
-          <div class="border border-danger">
-            <form class="d-flex border border-danger" role="search">
+          <div class="">
+            <form class="d-flex rounded-4" role="search">
               <input
                 id="userInput"
-                class="form-control m-2"
+                class="form-control rounded-4 m-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
               />
               <button
                 id="searchBtn"
-                class="btn btn-outline-success"
+                class="btn rounded-4 btn-outline-success"
                 type="submit"
               >
                 Search
               </button>
             </form>
           </div>
-          <ul class="list-group border border-danger">
+          <ul class="list-group">
             <!-- <li class="list-group-item m-2 bg-success p-2 text-dark text-center bg-opacity-25">An item</li> -->
           </ul>
         </aside>
-        <div class="col-lg-8 border border-danger">
-          <div id="today" class="col-lg-7 border border-danger">
-            <h5>Current Forecast</h5>
+        <div class="col-lg-8">
+          <div id="today" class="col-lg-7">
+            <h5
+              class="rounded-4 m-2 text-shadow text-center shadow text-white bg-success"
+            >
+              Current Forecast
+            </h5>
           </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col">
+          <h5
+            class="rounded-4 m-2 p-2 text-center text-shadow shadow text-white bg-success"
+          >
+            5-Day Forecast
+          </h5>
           <div class="row">
-            <div class="col border border-danger">
-              <h5 clsas="m-2">5-Day Forecast</h5>
-              <div class="row">
-                <div
-                  id="forecast"
-                  class="d-lg-flex justify-content-lg-around p-1 card-text"
-                ></div>
-              </div>
-            </div>
+            <div
+              id="forecast"
+              class="d-lg-flex justify-content-lg-around p-1 card-text"
+            ></div>
           </div>
         </div>
       </div>
