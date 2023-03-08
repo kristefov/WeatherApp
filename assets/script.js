@@ -1,3 +1,4 @@
+// variables for use in the first day function forecast and the search city option
 let button = document.getElementById("searchBtn");
 let userInput = document.getElementById("userInput");
 let citySave = document.querySelector("ul.list-group");
@@ -11,7 +12,7 @@ let humidity = document.createElement("p");
 let searchHistory = JSON.parse(localStorage.getItem("history")) || [];
 let forecast = document.getElementById("forecast");
 let keyWeather = "6db007ce7682101c6b918e762e7745b2";
-
+// function for fecth the data for the current forecast.
 function getApi(cityName) {
   let requestWeather =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -37,13 +38,14 @@ function getApi(cityName) {
       searchHistory.unshift(data.name);
       searchHistory.splice(4);
       displaySearch();
+      // save the city cearh in th elocal storage
       localStorage.setItem("history", JSON.stringify(searchHistory));
       currentCity.className =
         "bg-success m-1 p-4 rounded-4 text-dark bg-opacity-25";
       cityN.className =
         "rounded-4 m-2 p-2 text-shadow text-center shadow text-white bg-success";
     });
-
+  // appending the variables for the current weather section
   currentCity.append(cityN);
   currentCity.append(image);
   currentCity.append(date);
@@ -51,7 +53,7 @@ function getApi(cityName) {
   currentCity.append(wind);
   currentCity.append(humidity);
 }
-
+// function to fecth the data for the 5-day forecast section
 function getForecast(cityName) {
   let requestForecast =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
@@ -65,7 +67,7 @@ function getForecast(cityName) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      // creatting for loop to create elemets and append them for each next 5 days
       forecast.innerHTML = "";
       for (let i = 6; i < data.list.length; i += 8) {
         let dayTimeUTC = new Date(data.list[i].dt * 1000);
@@ -98,7 +100,7 @@ function getForecast(cityName) {
       }
     });
 }
-
+// function to save the city searched in the unorder list
 let displaySearch = function () {
   citySave.innerHTML = "";
   for (let i = 0; i < searchHistory.length; i++) {
@@ -113,7 +115,7 @@ let displaySearch = function () {
     citySave.append(cityList);
   }
 };
-
+// event listener for the city search button
 button.addEventListener("click", function (event) {
   event.preventDefault();
   let city = userInput.value;
