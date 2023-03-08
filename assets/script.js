@@ -35,8 +35,13 @@ function getApi(cityName) {
       temp.textContent = "Temperature: " + data.main.temp + " °C";
       wind.textContent = "Wind: " + data.wind.speed + " Mph";
       humidity.textContent = "Humidity: " + data.main.humidity + " %";
-      searchHistory.unshift(data.name);
-      searchHistory.splice(4);
+      if (!searchHistory.includes(data.name)) {
+        searchHistory.push(data.name);
+      }
+      if (searchHistory.length > 5) {
+        searchHistory.shift();
+      }
+      //searchHistory.splice(4);
       displaySearch();
       // save the city cearh in th elocal storage
       localStorage.setItem("history", JSON.stringify(searchHistory));
@@ -63,7 +68,6 @@ function getForecast(cityName) {
     "&units=metric";
   fetch(requestForecast)
     .then(function (response) {
-      console.log(response);
       return response.json();
     })
     .then(function (data) {
@@ -111,6 +115,13 @@ let displaySearch = function () {
     cityList.addEventListener("click", function () {
       getApi(searchHistory[i]);
       getForecast(searchHistory[i]);
+ // it will move most recent searh of list element to the top
+      let arr = [];
+      let historyObject = searchHistory[i];
+      searchHistory.splice(i, 1);
+      arr = [historyObject, ...searchHistory];
+      console.log(arr);
+      searchHistory = arr;
     });
     citySave.append(cityList);
   }
