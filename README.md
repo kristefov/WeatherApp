@@ -19,10 +19,10 @@ This website was built using HTML, CSS, and JavaScript. The website also uses th
 ## Links
 
 - Website
-  https://kristiyantefov.github.io/WeatherApp/
+  https://kristefov.github.io/WeatherApp/
 
 - Repo
-  https://github.com/kristiyantefov/WeatherApp
+  https://github.com/kristefov/WeatherApp
 
 ## Mock-Up
 
